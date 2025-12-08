@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Referências Bibliográficas – Fisioterapia em Terapia Intensiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-page: #f3f6fb;
+      --bg-card: #ffffff;
+      --bg-secondary: #e3f2fd;
+      --accent: #0d47a1;
+      --accent-soft: #bbdefb;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --border-soft: #d0d7e2;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.10);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #e3f2fd 0, #ffffff 45%, #e0ecff 100%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .refs-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      overflow: hidden;
+    }
+
+    .refs-header {
+      padding: 1.5rem 1.75rem 1.25rem;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(
+        120deg,
+        rgba(13, 71, 161, 0.06),
+        rgba(27, 94, 32, 0.02)
+      );
+    }
+
+    .refs-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .refs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.7rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: rgba(13, 71, 161, 0.08);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .refs-badge span.icon {
+      font-size: 0.95rem;
+    }
+
+    .refs-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .refs-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 540px;
+    }
+
+    .collapse-toggle {
+      appearance: none;
+      border: none;
+      outline: none;
+      background: #ffffff;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(13, 71, 161, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+      transition: background var(--transition-fast), transform var(--transition-fast),
+        box-shadow var(--transition-fast), border-color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .collapse-toggle-icon {
+      display: inline-block;
+      transition: transform var(--transition-fast);
+    }
+
+    .collapse-toggle:hover {
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16);
+      border-color: rgba(13, 71, 161, 0.45);
+    }
+
+    .collapse-toggle.is-open .collapse-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .refs-content-wrapper {
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+
+    .refs-content-inner {
+      padding: 1.25rem 1.75rem 1.75rem;
+      background: radial-gradient(circle at top left, #e3f2fd 0, #ffffff 40%);
+    }
+
+    .refs-info {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .refs-info-pill {
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-pill);
+      background: rgba(148, 163, 184, 0.12);
+    }
+
+    .refs-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: ref-counter;
+    }
+
+    .refs-item {
+      position: relative;
+      counter-increment: ref-counter;
+      padding: 0.75rem 0.85rem;
+      margin-bottom: 0.35rem;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.7);
+      line-height: 1.45;
+      font-size: 0.86rem;
+      color: var(--text-main);
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+        transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .refs-item::before {
+      content: counter(ref-counter) ".";
+      position: absolute;
+      left: -1.7rem;
+      top: 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    .refs-item:hover {
+      background: var(--bg-secondary);
+      border-color: rgba(13, 71, 161, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.14);
+    }
+
+    .refs-highlight {
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1.25rem 0.75rem;
+      }
+
+      .refs-header {
+        padding: 1.25rem 1.2rem 1rem;
+      }
+
+      .refs-content-inner {
+        padding: 1rem 1.2rem 1.3rem;
+      }
+
+      .refs-item::before {
+        left: -1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <section class="refs-card">
+      <header class="refs-header">
+        <div class="refs-title-group">
+          <div class="refs-badge">
+            <span class="icon">📚</span>
+            <span>Referências bibliográficas</span>
+          </div>
+          <h1 class="refs-title">
+            Fisioterapia Terapia Intensiva Adulto para profissionais do Hospital FUNDAJAN 
+          </h1>
+          <p class="refs-subtitle">
+            Lista integrada de referências utilizadas na construção dos guias interativos
+          </p>
+        </div>
+        <button class="collapse-toggle" type="button" id="toggleRefs">
+          <span class="collapse-toggle-icon">▼</span>
+          <span>Exibir / ocultar referências</span>
+        </button>
+      </header>
+
+      <div class="refs-content-wrapper" id="refsContent">
+        <div class="refs-content-inner">
+          <div class="refs-info">
+            <span class="refs-info-pill">
+      
+
+            </span>
+            <span class="refs-info-pill">
+              
+
+
+            </span>
+          </div>
+
+          <ol class="refs-list">
+            <li class="refs-item">
+              <span class="refs-highlight">AMATO, M. B. P. et al.</span>
+              Driving pressure and survival in the acute respiratory distress
+              syndrome. <em>New England Journal of Medicine</em>, Boston, v. 372,
+              n. 8, p. 747-755, 2015.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                AMERICAN THORACIC SOCIETY; EUROPEAN SOCIETY OF INTENSIVE
+                CARE MEDICINE; SOCIETY OF CRITICAL CARE MEDICINE.
+              </span>
+              ATS/ESICM/SCCM clinical practice guidelines on mechanical
+              ventilation for acute respiratory failure.
+              <em>American Journal of Respiratory and Critical Care Medicine</em>,
+              New York, v. 202, p. 1-40, 2020.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                ASSOCIAÇÃO BRASILEIRA DE MEDICINA INTENSIVA; SOCIEDADE
+                BRASILEIRA DE PNEUMOLOGIA E TISIOLOGIA.
+              </span>
+              Recomendações brasileiras de ventilação mecânica 2013. Partes I e
+              II. <em>Revista Brasileira de Terapia Intensiva / Jornal Brasileiro
+              de Pneumologia</em>, São Paulo, v. 26, p. 89-239, 2014.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                ASSOCIAÇÃO BRASILEIRA DE MEDICINA INTENSIVA; SOCIEDADE
+                BRASILEIRA DE PNEUMOLOGIA E TISIOLOGIA.
+              </span>
+              Orientações práticas de ventilação mecânica invasiva. Projeto
+              AMIB–SBPT. Florianópolis: AMIB/SBPT, 2023.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">BARBAS, C. S. V. et al.</span>
+              Ventilation in ARDS: the Brazilian perspective and protective
+              strategies. <em>Journal of Bras Pneumology</em>, São Paulo, v. 40,
+              p. 327-363, 2014.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">BERTONI, M. et al.</span>
+              Monitoring patients’ respiratory effort by the airway occlusion
+              pressure during assisted ventilation. <em>Critical Care</em>, London,
+              v. 23, p. 346, 2019.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                BROCHARD, L.; SLUTSKY, A. S.; PESENTI, A.
+              </span>
+              Mechanical ventilation to minimize progression of lung injury in
+              acute respiratory distress syndrome.
+              <em>American Journal of Respiratory and Critical Care Medicine</em>,
+              New York, v. 195, n. 4, p. 438-442, 2017.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">COSTA, E. L. V. et al.</span>
+              The place of mechanical power in acute respiratory distress
+              syndrome. <em>Current Opinion in Critical Care</em>, Philadelphia,
+              v. 27, n. 1, p. 1-8, 2021.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                D’CRUZ, R. F.; HART, N.
+              </span>
+              Mechanisms of hypoxaemia and hypercapnia. In: HEUNKS, L.;
+              SCHULTZ, M. J. (ed.). <em>ERS practical handbook of invasive
+              mechanical ventilation</em>. Sheffield: European Respiratory Society,
+              2019. p. 1-7.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">DRES, M.; BROCHARD, L.</span>
+              Spontaneous breathing trials and weaning from mechanical
+              ventilation. <em>New England Journal of Medicine</em>, Boston,
+              v. 384, p. 548-556, 2021.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">ESQUINAS, A. M. (ed.).</span>
+              <em>Noninvasive mechanical ventilation in clinical practice</em>.
+              Cham: Springer, 2020.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">FAN, E. et al.</span>
+              An official ATS/ESICM/SCCM clinical practice guideline: mechanical
+              ventilation in adult patients with acute respiratory distress
+              syndrome. <em>American Journal of Respiratory and Critical Care
+              Medicine</em>, New York, v. 195, n. 9, p. 1253-1263, 2017.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">FRERICHS, I. et al.</span>
+              Chest electrical impedance tomography examination, data analysis,
+              terminology and clinical use. <em>Intensive Care Medicine</em>,
+              Berlin, v. 43, p. 713-731, 2017.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">GOLIGHER, E. C. et al.</span>
+              Diaphragm injury and mechanical ventilation.
+              <em>American Journal of Respiratory and Critical Care Medicine</em>,
+              New York, v. 195, p. 1347-1355, 2017.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">HERNÁNDEZ, G. et al.</span>
+              Noninvasive ventilation after extubation in high-risk patients.
+              <em>Journal of the American Medical Association</em>, Chicago,
+              v. 315, n. 13, p. 1354-1361, 2016.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                HEUNKS, L.; SCHULTZ, M. J. (ed.).
+              </span>
+              <em>ERS practical handbook of invasive mechanical ventilation</em>.
+              Sheffield: European Respiratory Society, 2019.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                INSTITUTO SÍRIO-LIBANÊS DE ENSINO E PESQUISA.
+              </span>
+              Mobilização funcional em terapia intensiva: protocolo
+              institucional. São Paulo: Hospital Sírio-Libanês, 2018.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">KHEMANI, R. G. et al.</span>
+              The cuff leak test to predict post-extubation upper airway
+              obstruction: a systematic review and meta-analysis.
+              <em>Chest</em>, Glenview, v. 135, n. 3, p. 595-604, 2009.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">MAURI, T. et al.</span>
+              Respiratory drive in the acute respiratory distress syndrome:
+              pathophysiology, monitoring, and therapeutic interventions.
+              <em>Intensive Care Medicine</em>, Berlin, v. 46, n. 4, p. 606-618,
+              2020.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                MEKONTSO DESSAP, A. et al.
+              </span>
+              HACOR score to predict failure of non-invasive ventilation in
+              hypoxemic respiratory failure: external validation.
+              <em>Intensive Care Medicine</em>, Berlin, v. 42, n. 2, p. 200-208,
+              2016.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">NAVA, S.; HILL, N.</span>
+              Non-invasive ventilation in acute respiratory failure.
+              <em>The Lancet Respiratory Medicine</em>, London, v. 7, n. 7,
+              p. 546-557, 2019.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">NEMER, S. N.; BARBAS, C. S. V.</span>
+              Predictive parameters for weaning from mechanical ventilation.
+              <em>Respiratory Care</em>, Dallas, v. 56, n. 12, p. 1837-1850, 2011.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">ROCA, O. et al.</span>
+              An index combining respiratory rate and oxygenation to predict
+              outcome of nasal high-flow therapy.
+              <em>American Journal of Respiratory and Critical Care Medicine</em>,
+              New York, v. 199, n. 11, p. 1368-1376, 2019.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">ROSE, L.</span>
+              Weaning protocols and automatic modes of ventilation. In:
+              HEUNKS, L.; SCHULTZ, M. J. (ed.).
+              <em>ERS practical handbook of invasive mechanical ventilation</em>.
+              Sheffield: European Respiratory Society, 2019. p. 214-220.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">SCHMIDT, M. et al.</span>
+              Extubation failure: risk factors and evaluation indices of
+              weaning. <em>Intensive Care Medicine</em>, Berlin, v. 44, n. 1,
+              p. 15-25, 2018.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">SPINELLI, E. et al.</span>
+              Respiratory drive in the acute respiratory distress syndrome:
+              pathophysiology, monitoring, and therapeutic interventions.
+              <em>Intensive Care Medicine</em>, Berlin, v. 46, n. 4, p. 606-618,
+              2020.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">TOBIN, M. J. (ed.).</span>
+              <em>Principles and practice of mechanical ventilation</em>. 3. ed.
+              New York: McGraw-Hill, 2013.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">
+                UNIVERSO DOC; ASSOCIAÇÃO BRASILEIRA DE MEDICINA INTENSIVA.
+              </span>
+              <em>Neurointensivismo – Curso de Imersão em Terapia Intensiva
+              Neurológica (CITIN)</em>. Rio de Janeiro: AMIB, 2005.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">YILDIZDAS, D. et al.</span>
+              Ventilatory ratio: a simple bedside index to assess dead-space
+              ventilation and outcome in acute respiratory failure.
+              <em>Intensive Care Medicine</em>, Berlin, v. 46, n. 10, p. 1894-1902,
+              2020.
+            </li>
+
+            <li class="refs-item">
+              <span class="refs-highlight">ZANATTA, G. C. et al.</span>
+              Gasometria arterial e distúrbios ácido-básicos no paciente
+              crítico: abordagem prática. In:
+              <em>Gasometria arterial e distúrbios hidroeletrolíticos</em>. Curso
+              de atualização em terapia intensiva. Porto Alegre: AMIB, 2022.
+            </li>
+
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const toggle = document.getElementById("toggleRefs");
+      const content = document.getElementById("refsContent");
+
+      // estado inicial: fechado
+      let isOpen = false;
+      content.style.maxHeight = "0px";
+      content.style.opacity = "0";
+
+      function updateCollapse() {
+        if (isOpen) {
+          const scrollHeight = content.scrollHeight;
+          content.style.maxHeight = scrollHeight + "px";
+          content.style.opacity = "1";
+          toggle.classList.add("is-open");
+        } else {
+          content.style.maxHeight = "0px";
+          content.style.opacity = "0";
+          toggle.classList.remove("is-open");
+        }
+      }
+
+      toggle.addEventListener("click", function () {
+        isOpen = !isOpen;
+        updateCollapse();
+      });
+
+      // abre por padrão em telas largas (opcional – pode remover se quiser sempre fechado)
+      if (window.innerWidth > 900) {
+        isOpen = true;
+        updateCollapse();
+      }
+    })();
+  </script>
+</body>
+</html>
